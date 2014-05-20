@@ -1,0 +1,108 @@
+<html>
+<head>
+	<title>VG Custom Player</title>
+	<link href="http://vjs.zencdn.net/4.5/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/4.5/video.js"></script>
+
+ <link href="css/videojs-overlay.css" rel="stylesheet">
+</head>
+<body>
+
+
+ 
+<video id="player" class="video-js vjs-default-skin" controls
+ preload="auto" width="640" height="264" poster=""
+ data-setup="{}">
+ <source src="https://s3-us-west-2.amazonaws.com/mediaorigin/Animated+Ball+Bouncing+Assigment.mp4" type='video/mp4'>
+ <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+</video>
+
+
+
+	<script>
+    (function() {
+      var vid1, progressed;
+
+      
+     overlayfn = function(options){
+     	this.on('timeupdate',function(e){
+
+
+     		var el = document.getElementById('test');
+
+     		if(!el){
+
+     			// create the overlay wrapper
+			    var el = document.createElement('div');
+			    el.id='test';
+			   el.className="vjs-overlay"
+			    el.style.width = '59px';
+			    el.style.height ="59px";
+			    
+        
+
+			   
+			    // add the overlay to the player
+			    this.el().appendChild(el);
+
+     		}
+
+
+
+           var index = this.currentTime()/1>>0;
+
+          if(index <=10){
+            
+            el.style.left = options.positions[index].left;
+            el.style.top = options.positions[index].top;
+          }else{
+            
+            el.style.left = options.positions[10].left;
+            el.style.top = options.positions[10].top;
+          }
+        
+
+        
+
+
+     		 
+     			console.log(this.currentTime());
+     	});
+     };
+
+      // register the plugin
+      
+      videojs.plugin('overlayfn',overlayfn);
+
+      var options= {
+      	positions: [
+      	{left: '166px',top: '25px'},
+      	{left: '167px',top: '87px'},
+        {left: '167px',top: '111px'},
+        {left: '165px',top: '165px'},
+        {left: '168px',top: '103px'},
+        {left: '169px',top: '97px'},
+        {left: '169px',top: '138px'},
+        {left: '168px',top: '103px'},
+        {left: '170px',top: '41px'},
+        {left: '167px',top: '120px'},
+        {left: '169px',top: '120px'}
+
+
+
+      	]
+      };
+
+   
+
+      // initialize it
+      vid1 = videojs('player');
+      vid1.overlayfn(options);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>
