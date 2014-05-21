@@ -11,7 +11,7 @@
 
  
 <video id="player" class="video-js vjs-default-skin" controls
- preload="auto" width="640" height="264" poster=""
+ preload="auto" width="640" height="360" poster=""
  data-setup="{}">
  <source src="https://s3-us-west-2.amazonaws.com/mediaorigin/Animated+Ball+Bouncing+Assigment.mp4" type='video/mp4'>
  <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
@@ -20,6 +20,8 @@
 
 
 	<script>
+  var index =0 ;
+
     (function() {
       var vid1, progressed;
 
@@ -49,24 +51,26 @@
 
 
 
-           var index = this.currentTime()/1>>0;
+           //var index = this.currentTime()/1>>0;
 
-          if(index <=10){
+          if(index <=19){
             
             el.style.left = options.positions[index].left;
             el.style.top = options.positions[index].top;
-          }else{
-            
-            el.style.left = options.positions[10].left;
-            el.style.top = options.positions[10].top;
-          }
+            index = index+1;
+            console.log("Current Index:"+index);
+
+            console.log("CurrentTime:"+this.currentTime());
+            console.log("Current Position:"+options.positions[index].left+":"+options.positions[index].top);
+
+         }
         
 
         
 
 
      		 
-     			console.log(this.currentTime());
+     			
      	});
      };
 
@@ -76,17 +80,27 @@
 
       var options= {
       	positions: [
-      	{left: '166px',top: '25px'},
-      	{left: '167px',top: '87px'},
-        {left: '167px',top: '111px'},
-        {left: '165px',top: '165px'},
-        {left: '168px',top: '103px'},
-        {left: '169px',top: '97px'},
-        {left: '169px',top: '138px'},
-        {left: '168px',top: '103px'},
-        {left: '170px',top: '41px'},
-        {left: '167px',top: '120px'},
-        {left: '169px',top: '120px'}
+      {left:'112px',top:'38px'},
+    {left:'112px',top:'123px'},
+    {left:'112px',top:'208px'},
+    {left:'112px',top:'197px'},
+    {left:'112px',top:'132px'},
+    {left:'112px',top:'52px'},
+    {left:'112px',top:'105px'},
+    {left:'112px',top:'184px'},
+    {left:'112px',top:'223px'},
+  {left:'112px',top:'200px'},
+  {left:'112px',top:'138px'},
+  {left:'112px',top:'76px'},
+  {left:'112px',top:'78px'},
+  {left:'112px',top:'140px'},
+  {left:'112px',top:'202px'},
+  {left:'112px',top:'179px'},
+  {left:'112px',top:'113px'},
+  {left:'112px',top:'44px'},
+  {left:'112px',top:'104px'},
+  {left:'112px',top:'173px'},
+  {left:'112px',top:'242px'}
 
 
 
