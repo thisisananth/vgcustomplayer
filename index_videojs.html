@@ -22,15 +22,26 @@
 	<script>
   var index =0 ;
 
+  function addClickHandler(el, player) {
+            el.addEventListener('click', function(e) {
+             console.log('this:'+this.id);
+            console.log('curr time:'+player.currentTime());
+          }, false);
+          } ;
+
     (function() {
       var vid1, progressed;
 
+      
+     
       
      overlayfn = function(options){
      	this.on('timeupdate',function(e){
 
 
      		var el = document.getElementById('test');
+        var player = this;
+        console.log('player this:'+player);
 
      		if(!el){
 
@@ -40,9 +51,8 @@
 			   el.className="vjs-overlay"
 			    el.style.width = '59px';
 			    el.style.height ="59px";
-			    
         
-
+          addClickHandler(el,player);
 			   
 			    // add the overlay to the player
 			    this.el().appendChild(el);
@@ -112,6 +122,8 @@
       // initialize it
       vid1 = videojs('player');
       vid1.overlayfn(options);
+
+
     })();
   </script>
 
