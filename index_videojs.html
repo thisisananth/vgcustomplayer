@@ -6,35 +6,35 @@
 
   <link href="css/videojs-overlay.css" rel="stylesheet">
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
-function resumeVideo(){
+  function resumeVideo(){
 
-  var olayform = document.getElementById('olayform');
-  olayform.parentNode.removeChild(olayform);
-
-
-  var player=videojs('player');
-  player.play();
-  return false;
+    var olayform = document.getElementById('olayform');
+    olayform.parentNode.removeChild(olayform);
 
 
-}
+    var player=videojs('player');
+    player.play();
+    return false;
 
-</script>
-<style type="text/css">
 
-form{
+  }
+
+  </script>
+  <style type="text/css">
+
+  form{
     border:1px solid red;
     width:50%; 
     height:50%;
-    font-size:20;
+    font-size:20px;
     margin:0 auto;
     margin-top:5em;
     padding: 15px;
     text-align:center;
-}
-</style>
+  }
+  </style>
 
 
 </head>
@@ -60,20 +60,20 @@ form{
    console.log('curr time:'+player.currentTime());
 
    player.pause();
-    var el = document.createElement('div');
+   var el = document.createElement('div');
 
-    el.id="olayform";
-    el.style.width ="640px";
-    el.style.height="320px";
-    el.style.backgroundColor="#fff";
-    el.style.zIndex="3000";
-    el.style.position="absolute";
+   el.id="olayform";
+   el.style.width ="640px";
+   el.style.height="320px";
+   el.style.backgroundColor="#fff";
+   el.style.zIndex="3000";
+   el.style.position="absolute";
    
-    el.innerHTML="<form class='form' method='POST' action='#'>"+"<label >Do you like this video?</label><br>"+"<input type='text' name='Pref'></input><br>"+
-"<input type='submit'  name='Submit'  onclick='return resumeVideo();' ></input>"+
-"</form>";
+   el.innerHTML="<form class='form' method='POST' action='#'>"+"<label >Do you like this video?</label><br>"+"<input type='text' name='Pref'></input><br>"+
+   "<input type='submit'  name='Submit'  onclick='return resumeVideo();' ></input>"+
+   "</form>";
 
-    player.el().appendChild(el);
+   player.el().appendChild(el);
 
 
  }, false);
@@ -119,7 +119,7 @@ form{
             el.style.left = options.positions[index].left;
             el.style.top = options.positions[index].top;
             index = index+1;
-           
+
 
           }
 
@@ -130,7 +130,7 @@ form{
 
 
         });
-};
+  };
 
       // register the plugin
       

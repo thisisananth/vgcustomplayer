@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="https://vjs.zencdn.net/4.5.1/video-js.css" />
+   <link href="css/videojs-overlay.css" rel="stylesheet">
+   <script type="text/javascript">
+
+  function resumeVideo(){
+
+    var olayform = document.getElementById('olayform');
+    olayform.parentNode.removeChild(olayform);
+
+
+    var player=videojs('vid1');
+    player.play();
+    return false;
+
+
+  }
+
+  </script>
+  <style type="text/css">
+
+  form{
+    border:1px solid red;
+    width:50%; 
+    height:50%;
+    font-size:20px;
+    margin:0 auto;
+    margin-top:5em;
+    padding: 15px;
+    text-align:center;
+  }
+  </style>
+</head>
+<body>
+  <video id="vid1" src="" class="video-js vjs-default-skin" controls toggleOnClick="false" preload="auto" width="640" height="360">
+  </video>
+  
+  <script src="https://vjs.zencdn.net/4.5.1/video.js"></script>
+  <script src="js/vjs.youtube.js"></script>
+  <script>
+  var index = 0;
+
+function addClickHandler(el, player) {
+  el.addEventListener('click', function(e) {
+   console.log('this:'+this.id);
+   console.log('curr time:'+player.currentTime());
+
+   player.pause();
+   var el = document.createElement('div');
+
+   el.id="olayform";
+   el.style.width ="640px";
+   el.style.height="320px";
+   el.style.backgroundColor="#fff";
+   el.style.zIndex="3000";
+   el.style.position="absolute";
+   
+   el.innerHTML="<form class='form' method='POST' action='#'>"+"<label >Do you like this video?</label><br>"+"<input type='text' name='Pref'></input><br>"+
+   "<input type='submit'  name='Submit'  onclick='return resumeVideo();' ></input>"+
+   "</form>";
+
+   player.el().appendChild(el);
+
+
+ }, false);
+} ;
+
+
+
+  videojs('vid1', { "techOrder": ["youtube"], "src": "http://www.youtube.com/watch?v=cMpiFfVEqRk" }).ready(function() {
+
+  overlayfn = function(options){
+    this.on('timeupdate',function(e){
+     var el = document.getElementById('test');
+     var player = this;
+      if(!el){
+
+          // create the overlay wrapper
+           var el = document.createElement('div');
+           el.id='test';
+           el.className="vjs-overlay";
+           el.style.width = '60px';
+           el.style.height ="300px";
+
+           addClickHandler(el,player);
+
+          // add the overlay to the player
+          this.el().appendChild(el);
+
+       }
+
+           if(index <=19){
+
+            el.style.left = options.positions[index].left;
+            el.style.top = options.positions[index].top;
+            index = index+1;
+            
+
+          }
+       });
+  };
+
+  videojs.plugin('overlayfn',overlayfn);
+
+      var options= {
+        positions: [
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'},
+        {left:'112px',top:'0px'}
+
+
+
+        ]
+      };
+
+    this.overlayfn(options);
+  
+  });
+  </script>
+</body>
+</html>
