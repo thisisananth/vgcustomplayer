@@ -2,87 +2,121 @@
 <head>
 	<title>VG Custom Player</title>
 	<link href="http://vjs.zencdn.net/4.5/video-js.css" rel="stylesheet">
-<script src="http://vjs.zencdn.net/4.5/video.js"></script>
+  <script src="http://vjs.zencdn.net/4.5/video.js"></script>
 
- <link href="css/videojs-overlay.css" rel="stylesheet">
+  <link href="css/videojs-overlay.css" rel="stylesheet">
+
+<script type="text/javascript">
+
+function resumeVideo(){
+
+  var olayform = document.getElementById('olayform');
+  olayform.parentNode.removeChild(olayform);
+
+
+  var player=videojs('player');
+  player.play();
+  return false;
+
+
+}
+
+</script>
+
 </head>
 <body>
 
 
- 
-<video id="player" class="video-js vjs-default-skin" controls
- preload="auto" width="640" height="360" poster=""
- data-setup="{}">
- <source src="https://s3-us-west-2.amazonaws.com/mediaorigin/Animated+Ball+Bouncing+Assigment.mp4" type='video/mp4'>
- <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-</video>
+
+  <video id="player" class="video-js vjs-default-skin" controls
+  preload="auto" width="640" height="360" poster=""
+  data-setup="{}">
+  <source src="https://s3-us-west-2.amazonaws.com/mediaorigin/Animated+Ball+Bouncing+Assigment.mp4" type='video/mp4'>
+   <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+ </video>
 
 
 
-	<script>
-  var index =0 ;
+ <script>
+ var index =0 ;
 
-  function addClickHandler(el, player) {
-            el.addEventListener('click', function(e) {
-             console.log('this:'+this.id);
-            console.log('curr time:'+player.currentTime());
-          }, false);
-          } ;
+ function addClickHandler(el, player) {
+  el.addEventListener('click', function(e) {
+   console.log('this:'+this.id);
+   console.log('curr time:'+player.currentTime());
 
-    (function() {
-      var vid1, progressed;
+   player.pause();
+    var el = document.createElement('div');
 
-      
-     
-      
-     overlayfn = function(options){
-     	this.on('timeupdate',function(e){
+    el.id="olayform";
+    el.style.width ="640px";
+    el.style.height="360px";
+    el.style.backgroundColor="rgb(228, 228, 61)";
+    el.style.zIndex="3000";
+    el.style.position="absolute";
+   // player.el().style.display="none";
+    el.innerHTML="<form method='POST' action='#'>"+"<label>Do you like this video?</label>"+"<input type='text' name='Pref'></input>"+
+"<input type='submit'  name='Submit'  onclick='return resumeVideo();' ></input>"+
+"</form>";
+
+    player.el().appendChild(el);
 
 
-     		var el = document.getElementById('test');
-        var player = this;
-        console.log('player this:'+player);
+ }, false);
+} ;
 
-     		if(!el){
+(function() {
+  var vid1, progressed;
+
+
+
+
+
+  overlayfn = function(options){
+    this.on('timeupdate',function(e){
+
+
+     var el = document.getElementById('test');
+     var player = this;
+     console.log('player this:'+player);
+
+     if(!el){
 
      			// create the overlay wrapper
-			    var el = document.createElement('div');
-			    el.id='test';
-			   el.className="vjs-overlay"
-			    el.style.width = '59px';
-			    el.style.height ="59px";
-        
-          addClickHandler(el,player);
-			   
+           var el = document.createElement('div');
+           el.id='test';
+           el.className="vjs-overlay";
+           el.style.width = '59px';
+           el.style.height ="59px";
+
+           addClickHandler(el,player);
+
 			    // add the overlay to the player
 			    this.el().appendChild(el);
 
-     		}
+       }
 
 
 
            //var index = this.currentTime()/1>>0;
 
-          if(index <=19){
-            
+           if(index <=19){
+
             el.style.left = options.positions[index].left;
             el.style.top = options.positions[index].top;
             index = index+1;
-            console.log("Current Index:"+index);
+           
 
-            console.log("CurrentTime:"+this.currentTime());
-            console.log("Current Position:"+options.positions[index].left+":"+options.positions[index].top);
-
-         }
-        
-
-        
+          }
 
 
-     		 
-     			
-     	});
-     };
+
+
+
+
+
+        });
+};
 
       // register the plugin
       
@@ -90,34 +124,34 @@
 
       var options= {
       	positions: [
-      {left:'112px',top:'38px'},
-    {left:'112px',top:'123px'},
-    {left:'112px',top:'208px'},
-    {left:'112px',top:'197px'},
-    {left:'112px',top:'132px'},
-    {left:'112px',top:'52px'},
-    {left:'112px',top:'105px'},
-    {left:'112px',top:'184px'},
-    {left:'112px',top:'223px'},
-  {left:'112px',top:'200px'},
-  {left:'112px',top:'138px'},
-  {left:'112px',top:'76px'},
-  {left:'112px',top:'78px'},
-  {left:'112px',top:'140px'},
-  {left:'112px',top:'202px'},
-  {left:'112px',top:'179px'},
-  {left:'112px',top:'113px'},
-  {left:'112px',top:'44px'},
-  {left:'112px',top:'104px'},
-  {left:'112px',top:'173px'},
-  {left:'112px',top:'242px'}
+        {left:'112px',top:'38px'},
+        {left:'112px',top:'123px'},
+        {left:'112px',top:'208px'},
+        {left:'112px',top:'197px'},
+        {left:'112px',top:'132px'},
+        {left:'112px',top:'52px'},
+        {left:'112px',top:'105px'},
+        {left:'112px',top:'184px'},
+        {left:'112px',top:'223px'},
+        {left:'112px',top:'200px'},
+        {left:'112px',top:'138px'},
+        {left:'112px',top:'76px'},
+        {left:'112px',top:'78px'},
+        {left:'112px',top:'140px'},
+        {left:'112px',top:'202px'},
+        {left:'112px',top:'179px'},
+        {left:'112px',top:'113px'},
+        {left:'112px',top:'44px'},
+        {left:'112px',top:'104px'},
+        {left:'112px',top:'173px'},
+        {left:'112px',top:'242px'}
 
 
 
-      	]
+        ]
       };
 
-   
+
 
       // initialize it
       vid1 = videojs('player');
@@ -125,10 +159,10 @@
 
 
     })();
-  </script>
+    </script>
 
 
 
 
-</body>
-</html>
+  </body>
+  </html>
