@@ -22,6 +22,20 @@ function resumeVideo(){
 }
 
 </script>
+<style type="text/css">
+
+form{
+    border:1px solid red;
+    width:50%; 
+    height:50%;
+    font-size:20;
+    margin:0 auto;
+    margin-top:5em;
+    padding: 15px;
+    text-align:center;
+}
+</style>
+
 
 </head>
 <body>
@@ -50,12 +64,12 @@ function resumeVideo(){
 
     el.id="olayform";
     el.style.width ="640px";
-    el.style.height="360px";
-    el.style.backgroundColor="rgb(228, 228, 61)";
+    el.style.height="320px";
+    el.style.backgroundColor="#fff";
     el.style.zIndex="3000";
     el.style.position="absolute";
-   // player.el().style.display="none";
-    el.innerHTML="<form method='POST' action='#'>"+"<label>Do you like this video?</label>"+"<input type='text' name='Pref'></input>"+
+   
+    el.innerHTML="<form class='form' method='POST' action='#'>"+"<label >Do you like this video?</label><br>"+"<input type='text' name='Pref'></input><br>"+
 "<input type='submit'  name='Submit'  onclick='return resumeVideo();' ></input>"+
 "</form>";
 
